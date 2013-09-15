@@ -2,7 +2,7 @@
 <html lang='en'>
 	<head>
 		<meta charset="utf-8">
-		<title>Budgetz</title>
+		<title>Budget</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
 		<link href='css/style.css' rel='stylesheet' type='text/css'>
@@ -18,32 +18,86 @@
 		<div class="navbar navbar-inverse navbar-fixed-top">
 			<div class="navbar-inner">
 				<div class="container">
-					<a class="brand" href="#">Budgetz</a>
+					<a class="brand" href="#">Budget</a>
 				</div>
 			</div>
 		</div>
 		
-		<div class="container">
-			<legend>Mortgage</legend>
-			<div class="span3"><label>House Price</label><input type="text" placeholder="$"></div>
-			<div class="span3"><label>% Down</label><input type="text" placeholder="%"></div>
-			<div class="span3"><label>Taxes</label><input type="text" placeholder="$"></div>
-			<div class="span3"><label>Mortgage</label><input type="text" placeholder="$"></div>
-			
-			<legend>Expenses(monthly)</legend>
-			
-			<div id="expenses"></div>
+		<div class="container" style="margin-bottom:10px;">
+
+			<legend>Income(monthly)</legend>
+			<table class="table table-striped" id="income">
+				<thead>
+					<tr>
+						<th>Description</th>
+						<th>Amount($)</th>
+						<th></th>
+					</tr>
+				</thead>
+			</table>
 			
 			<br/>
-			<div class="span3"><input type="text" id="desc" placeholder="description"></div>
-			<div class="span3"><input type="text" id="amt" placeholder="amount($)"></div>
+			<div class="span3"><input type="text" id="incomedesc" placeholder="description"></div>
+			<div class="span3"><input type="text" id="incomeamt" placeholder="amount($)"></div>
+			<div class="span3"><button class="btn btn-info" onclick="addIncome()" type="button">Add Income</button></div>
+
+			<legend>Expenses(monthly)</legend>
+			<table class="table table-striped" id="expenses">
+				<thead>
+					<tr>
+						<th>Description</th>
+						<th>Amount($)</th>
+						<th></th>
+					</tr>
+				</thead>
+			</table>
+			
+			<br/>
+			<div class="span3"><input type="text" id="expensedesc" placeholder="description"></div>
+			<div class="span3"><input type="text" id="expenseamt" placeholder="amount($)"></div>
 			<div class="span3"><button class="btn btn-info" onclick="addExpense()" type="button">Add Expense</button></div>
+			
+			<legend>Mortgage</legend>
+			<div class="span3"><label>House Price</label><input id="hprice" type="text" placeholder="$"></div>
+			<div class="span3"><label>% Down</label><input id="hdown" type="text" placeholder="%"></div>
+			<div class="span3"><label>Rate</label><input id="irate" type="text" placeholder="%"></div>
+			<div class="span3"><label>Mortgage</label><input id="hmortgage" type="text" placeholder="$"></div>
+			<div class="span3"><label>$ Down</label><input id="hdollardown" type="text" placeholder="$"></div>
+			<div class="span3"><label>Taxes</label><input type="text" placeholder="$"></div>
+			
+			<legend>Break-down</legend>
+			
+			<div class="span6">
+			<table class="table">
+				<tr class="success">
+					<td>Total Income</td>
+					<td id='tincome'>$0.00</td>
+				</tr>
+				<tr class="error">
+					<td>Total Expenses</td>
+					<td id='texpense'>$0.00</td>
+				</tr>
+				<tr class="error">	
+					<td>Mortgage Payment</td>
+					<td id='tmortgage'>$0.00</td>
+				</tr>
+				<tr class="success">
+					<td>Savings</td>
+					<td id='total'>$0.00</td>
+				</tr>
+			</table>
+			</div>
+			
+			<legend></legend>
+			<button class="btn btn-success" onclick="createPDF()">PDF</button>
 			
 		</div>
 		
 		<script type="text/javascript" src="js/jquery-1.8.3.js"></script>
 		<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="js/script.js"></script>
+		<script type="text/javascript" src="js/jspdf.js"></script>
+		<script type="text/javascript" src="js/FileSaver.min.js"></script>
 	</body>
 
 </html>
